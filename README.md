@@ -7,13 +7,13 @@ This repository contains a catkin package that automatically downloads and insta
 If you have no catkin workspace, this package can be installed with the following commands.
 
 ```shell
-sudo pip install scrapy
 source /opt/ros/kinetic/setup.bash
 mkdir -p /path/to/carla_ws/src
 cd /path/to/carla_ws
 catkin init
 cd /path/to/carla_ws/src
 git clone git@github.com:mit-drl/carla_binary_catkin.git
+sudo pip install -r carla_binary_catkin/requirements.txt
 catkin build carla_binary_catkin
 ```
 
