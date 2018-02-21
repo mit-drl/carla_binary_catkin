@@ -13,7 +13,7 @@ catkin_package()
 
 ExternalProject_Add(carla_binary_catkin
   #NOTE: The following is used to avoid unnecessary downlads when debugging.
-  #URL ${CMAKE_SOURCE_DIR}/CARLA_0.7.1.tar.gz
+  #URL ${CMAKE_SOURCE_DIR}/CARLA_${CARLA_VERSION}.tar.gz
   DOWNLOAD_COMMAND
     python ${CMAKE_SOURCE_DIR}/download_from_gdrive.py  ${CARLA_URL} \\
       CARLA_${CARLA_VERSION}.tar.gz

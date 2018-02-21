@@ -25,7 +25,7 @@ source /opt/ros/kinetic/setup.bash
 source /path/to/carla_ws/devel/setup.bash
 ```
 
-Then, you can use rosrun to run the Simulator
+Then, you can use rosrun to run the simulator
 
 ```shell
 rosrun carla_binary_catkin CarlaUE4
