@@ -7,6 +7,7 @@ This repository contains a catkin package that automatically downloads and insta
 If you have no catkin workspace, this package can be installed with the following commands.
 
 ```shell
+sudo pip install scrapy
 source /opt/ros/kinetic/setup.bash
 mkdir -p /path/to/carla_ws/src
 cd /path/to/carla_ws
