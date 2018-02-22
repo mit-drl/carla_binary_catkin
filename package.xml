@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>carla_binary_catkin</name>
+  <version>0.0.1</version>
+  <description>The Catkin Installer for Carla simulator binaries</description>
+
+  <maintainer email="igilitschenski@mit.edu">Igor Gilitschenski</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>
