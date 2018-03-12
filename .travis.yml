@@ -1,0 +1,52 @@
+# Generic .travis.yml file for running continuous integration on Travis-CI for
+# any ROS package using Ubuntu 16.04 and ROS.
+# This is a modified version of the example .travis.yml file by Felix Duvallet
+# from https://github.com/felixduvallet/ros-travis-integration/
+dist: trusty # No xenial support available yet in Travis.
+sudo: required
+language:
+  - generic
+cache:
+  - apt
+
+# Configuration variables. All variables are global now, but this can be used to
+# trigger a build matrix for different ROS distributions if desired.
+env:
+  global:
+    - ROS_DISTRO=indigo
+    - ROS_CI_DESKTOP="`lsb_release -cs`"  # e.g. [precise|trusty|...]
+    - CI_SOURCE_PATH=$(pwd)
+    - ROSINSTALL_FILE=$CI_SOURCE_PATH/dependencies.rosinstall
+    - CATKIN_OPTIONS=$CI_SOURCE_PATH/catkin.options
+    - ROS_PARALLEL_JOBS='-j8 -l6'
+    # Set the python path manually to include /usr/-/python2.7/dist-packages
+    # as this is where apt-get installs python packages.
+    - PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages:/usr/local/lib/python2.7/dist-packages
+
+# Install system dependencies, namely a very barebones ROS setup.
+before_install:
+  - sudo sh -c "echo \"deb http://packages.ros.org/ros/ubuntu $ROS_CI_DESKTOP main\" > /etc/apt/sources.list.d/ros-latest.list"
+  - sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+  - sudo apt-get update -qq
+  - sudo apt-get install -y python-catkin-pkg python-rosdep python-wstool python-catkin-tools ros-$ROS_DISTRO-catkin  ros-$ROS_DISTRO-rosunit
+  - source /opt/ros/$ROS_DISTRO/setup.bash
+
+# Create a catkin workspace with the package under integration.
+install:
+  - mkdir -p ~/catkin_ws/src/
+  - cd ~/catkin_ws/
+  - catkin init
+  - cd ~/catkin_ws/src/
+  - ln -s $CI_SOURCE_PATH .
+  - ls
+  - sudo pip install -r carla_binary_catkin/requirements.txt
+
+script:
+  - source /opt/ros/$ROS_DISTRO/setup.bash
+  - cd ~/catkin_ws
+  - catkin build carla_binary_catkin
+  - source devel/setup.bash
+  - catkin build carla_binary_catkin --catkin-make-args run_tests
+  # Call of test results needed as catkin's exit status will be zero even in
+  # case of test failure.
+  - catkin_test_results build/carla_binary_catkin/test_results/

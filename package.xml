@@ -6,6 +6,8 @@
 
   <maintainer email="igilitschenski@mit.edu">Igor Gilitschenski</maintainer>
   <license>MIT</license>
+
   <buildtool_depend>catkin</buildtool_depend>
+  <test_depend>rosunit</test_depend>
 
 </package>

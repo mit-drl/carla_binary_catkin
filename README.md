@@ -17,6 +17,13 @@ sudo pip install -r carla_binary_catkin/requirements.txt
 catkin build carla_binary_catkin
 ```
 
+Running the unittests and viewing the results can be done using the following commands
+
+```shell
+catkin build carla_binary_catkin --catkin-make-args run_tests
+catkin_test_results /path/to/carla_ws/build/carla_binary_catkin/test_results/
+```
+
 ## Running
 
 First make sure, that setup.bash from ros and your workspace are sourced.
