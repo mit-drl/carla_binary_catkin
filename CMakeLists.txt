@@ -6,8 +6,8 @@ set(CMAKE_BUILD_TYPE Release)
 
 find_package(catkin REQUIRED)
 
-set(CARLA_URL https://drive.google.com/uc?id=1IOh3HWQAU2kcdpyPxWfNaNAnwCaUKv2P)
-set(CARLA_VERSION 0.7.1)
+set(CARLA_URL https://drive.google.com/uc?id=1ZtVt1AqdyGxgyTm69nzuwrOYoPUn_Dsm)
+set(CARLA_VERSION 0.8.2)
 
 catkin_package()
 
