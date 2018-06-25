@@ -41,7 +41,7 @@ rosrun carla_binary_catkin CarlaUE4
 
 ## Next Steps 
 
-If you are interested in running the CARLA server using a configuation (.ini) file, or in connecting to the server using a Python client, you can find the contents of the extracted CARLA binary at the following location in your catkin workspace:
+If you are interested in running the CARLA server using a configuation (.ini) file, or in connecting to the server using a Python client, you can find the contents of the extracted CARLA archive at the following location in your catkin workspace:
 
 ```shell
 /path/to/carla_ws/build/carla_binary_catkin/carla_binary_catkin-prefix/src/carla_binary_catkin
