@@ -22,7 +22,7 @@ class GoogleDriveSpider(scrapy.Spider):
             response.xpath('//div[@class="uc-main"]'
                            + '/div[@id="uc-text"]/a/@href').extract()[0]
         yield Request(url=downlaod_url, callback=self.save_file,
-                      meta={'download_maxsize' : 0, 'download_timeout' : 600})
+                      meta={'download_maxsize' : 0, 'download_timeout' : 1200})
 
     def save_file(self, response):
         """Saves downloaded file."""
